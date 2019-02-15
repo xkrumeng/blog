@@ -10,4 +10,6 @@
 
 [webpack4 配置学习](./react/webpack4/webpack4.md)
 
+[babel相关](./react/babel/babel7.md)
+
 [webpack4 react antd redux项目构建](./react/react-react-router4-antd-webpack4.md)
