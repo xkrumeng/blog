@@ -4,6 +4,10 @@
 
 [冴羽的博客 - JavaScript深入系列、JavaScript专题系列、ES6系列、underscore 系列](https://github.com/mqyqingfeng/Blog)
 
+[service worker](https://x5.tencent.com/tbs/guide/serviceworker.html)
+
+[前端面试 - 转 前端小吉米 的front-end-interview文章](./front-end-interview/index.md)
+
 ## 前端
 
 ### 团队博客
