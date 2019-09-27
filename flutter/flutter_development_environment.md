@@ -130,9 +130,9 @@ Doctor summary (to see all details, run flutter doctor -v):
    ! Doctor found issues in 2 categories.
    ```
 
-   **解决方法：**
+**解决方法：**
 
-   在环境变量中配置变量 ANDRIOD_HOME = 你的android SDK目录。
+> 在环境变量中配置变量 ANDRIOD_HOME = 你的android SDK目录。
 
 
 
@@ -140,13 +140,13 @@ Doctor summary (to see all details, run flutter doctor -v):
 
     ![android-licenses.webp](./imgs/android-licenses.webp)
 
-   **解决方法：**
+**解决方法：**
 
-   输入 flutter doctor --android-licenses，接下来所有的输入  y 就可以了
+> 输入 flutter doctor --android-licenses，接下来所有的输入  y 就可以了
 
 3. #### No devices available
 
-   这个错误比较好解决， 运行我们的android模拟器即可。
+> 这个错误比较好解决， 运行我们的android模拟器即可。
 
 
 
