@@ -138,7 +138,7 @@ Doctor summary (to see all details, run flutter doctor -v):
 
 2. #### 提示 flutter doctor --android-licenses
 
-![android-licenses.webp](./imgs/android-licenses.webp)
+    ![android-licenses.webp](./imgs/android-licenses.webp)
 
    **解决方法：**
 
@@ -153,10 +153,12 @@ Doctor summary (to see all details, run flutter doctor -v):
 ## 4. 插件安装
 
 ### 4.1 Android studio
-	打开File -> settings -> plugins, 搜索Flutter 安装
+
+> 打开File -> settings -> plugins, 搜索Flutter 安装
 
 ### 4.2 vscode
-	打开插件标签搜索flutter 安装
+
+> 打开插件标签搜索flutter 安装
 
 
 ## 5. 创建，并运行一个flutter程序
