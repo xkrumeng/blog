@@ -1,4 +1,6 @@
-# flutter 开发环境搭建
+
+
+flutter 开发环境搭建
 
 以下安装过程仅是winodws7系统下的安装过程。 windows其它系统的安装和win7下安装大致差不多。 如果是其它的如linux, 苹果的OSX系统。请参考flutter的官方文档来配置。
 
@@ -44,6 +46,16 @@ flutter
 
 ## 2. jdk安装
 
+下载jdk安装，
+
+打开计算机环境变量。 添加 如下变量：
+
+JAVA_HOME=jdk安装目录
+
+classpath=.;%JAVA_HOME%\lib;%JAVA_HOME%\lib\tools.jar;
+
+在path变量中增加 %JAVA_HOME%\bin;
+
 
 
 ## 3. 安装Android studio和android 环境
@@ -59,14 +71,19 @@ flutter
 例如我的:
  Android studio安装目录： E:\Android\Android Studio
  Android SDK目录: E:\Android\Sdk
- 
- 
+
+
 ### 3.2 安装Android sdk
 
-安装完成第一次运行时， android studio 会提示你要安装一些sdk, 直接点下一步安装就好。。 注意： 这一步需要花费比较长的时间等待， 完成之后，
-Android Studio 默认的会为你安装好一个android版本的sdk, 并创建好一个相应的的模拟器。
+安装完成第一次运行时， android studio 会提示你要安装一些sdk, 直接点下一步安装就好。
 
-添加环境变量ANDROID_HOME，把你android SDK的路径填上。 重新打开cmd。
+注意： 这一步需要花费比较长的时间等待， 完成之后，Android Studio 默认的会为你安装好一个android版本的sdk, 并创建好一个相应的的模拟器。
+
+添加环境变量ANDROID_HOME，把你android SDK的路径填上。 
+
+在path中添加 %ANDROID_HOME%\platform-tools;%ANDROID_HOME%\tools;
+
+重新打开cmd。
 
 如果想安装更多版本的sdk，可以在菜单栏的tools -> SDK Manage进去管理sdk
 
@@ -75,34 +92,69 @@ Android Studio 默认的会为你安装好一个android版本的sdk, 并创建�
 
 至此，我们的开发环境基本上就安装好了。下面来运行一下 flutter doctor 检查下当前的环境是否可以。
 
+```bash
+# 运行 flutter doctor 出在如下面的提示，说明我们的flutter 开发环境已经安装好了。
+
+λ flutter doctor
+Doctor summary (to see all details, run flutter doctor -v):
+[√] Flutter (Channel stable, v1.9.1+hotfix.2, on Microsoft Windows [Version 6.1.7601], locale zh-CN)
+[√] Android toolchain - develop for Android devices (Android SDK version 29.0.2)
+[√] Android Studio (version 3.5)
+[!] Connected device
+    ! No devices available
+
+! Doctor found issues in 1 category.
 ```
-flutter doctor
 
-```
 
-如果出现如下错误：
 
-1. 如果提示了  Unable to locate Android SDK.
+### 错误处理
 
-	解决方法：
+1. #### 未在环境变量中配置ANDRIOD_HOME错误,  运行 **flutter doctor**,  出现如下错误：
 
-	添加环境变量ANDROID_HOME，把你android SDK的路径填上，重启电脑即可。
+   ```bash
+   Doctor summary (to see all details, run flutter doctor -v):
+   [√] Flutter (Channel stable, v1.9.1+hotfix.2, on Microsoft Windows [Version 6.1.7601], locale zh-CN)
+   [X] Android toolchain - develop for Android devices
+       X Unable to locate Android SDK.
+         Install Android Studio from: https://developer.android.com/studio/index.html
+         On first launch it will assist you in installing the Android SDK components.
+         (or visit https://flutter.dev/setup/#android-setup for detailed instructions).
+         If the Android SDK has been installed to a custom location, set ANDROID_HOME to that location.
+         You may also want to add it to your PATH environment variable.
+   
+   [√] Android Studio (version 3.5)
+   [!] Connected device
+       ! No devices available
+   
+   ! Doctor found issues in 2 categories.
+   ```
 
-2. 
+   **解决方法：**
+
+   在环境变量中配置变量 ANDRIOD_HOME = 你的android SDK目录。
+
+
+
+2. #### 提示 flutter doctor --android-licenses
 
 ![android-licenses.webp](./imgs/android-licenses.webp)
 
-	解决方法：
+   **解决方法：**
 
-	输入 flutter doctor --android-licenses，接下来所有的输入  y 就可以了
-	
-	
+   输入 flutter doctor --android-licenses，接下来所有的输入  y 就可以了
+
+3. #### No devices available
+
+   这个错误比较好解决， 运行我们的android模拟器即可。
+
+
 
 ## 4. 插件安装
 
 ### 4.1 Android studio
 	打开File -> settings -> plugins, 搜索Flutter 安装
-	
+
 ### 4.2 vscode
 	打开插件标签搜索flutter 安装
 
@@ -145,129 +197,43 @@ flutter create flutter_demo
 
 再运行flutter 程序
 
-```
-
+```bash
 cd flutter_demo
-
-flutter run
-  
+flutter run  
 ```
 
 app 运行起来如下图
 
 ![emulator_run.png](./imgs/emulator_run.png)
 
+
 ### Error runing Gradle 错误解决
 
-在Debug项目的时候，如果出现类似下面这样的错误，这就应该是中国特有的墙的问题， 解决方案是改为阿里的链接。
+运行时如果遇到了 **Error runing Gradle** 错误提示，这是因为墙的原因导致，解决方案是改为阿里的链接。
 
-```bash
-Launching lib/main.dart on Android SDK built for x86 in debug mode...
-Initializing gradle...
-Resolving dependencies...
-* Error running Gradle:
-ProcessException: Process "/Users/rabbit/develop/android/flutter_app/android/gradlew" exited abnormally:
-Project evaluation failed including an error in afterEvaluate {}. Run with --stacktrace for details of the afterEvaluate {} error.
+阿里链接:
 
-FAILURE: Build failed with an exception.
+ ```java
+ maven { url 'https://maven.aliyun.com/repository/google' }
+ maven { url 'https://maven.aliyun.com/repository/jcenter' }
+ maven { url 'http://maven.aliyun.com/nexus/content/groups/public'}
+        
+ ```
 
-* Where:
-Build file '/Users/rabbit/develop/android/flutter_app/android/app/build.gradle' line: 25
 
-* What went wrong:
-A problem occurred evaluating project ':app'.
-> Could not resolve all files for configuration 'classpath'.
-   > Could not find lint-gradle-api.jar (com.android.tools.lint:lint-gradle-api:26.1.2).
-     Searched in the following locations:
-         https://jcenter.bintray.com/com/android/tools/lint/lint-gradle-api/26.1.2/lint-gradle-api-26.1.2.jar
+需要修改的文件:
 
-* Try:
-Run with --stacktrace option to get the stack trace. Run with --info or --debug option to get more log output. Run with --scan to get full insights.
+- 在项目目录下的android目录下的build.gradle文件。
 
-* Get more help at https://help.gradle.org
-
-BUILD FAILED in 0s
-  Command: /Users/rabbit/develop/android/flutter_app/android/gradlew app:properties
-
-Finished with error: Please review your Gradle project setup in the android/ folder.
-```
+- 修改Flutter SDK包下的flutter.gradle文件， 具体的文件路径是：
 
 ```
-maven { url 'https://maven.aliyun.com/repository/google' }
-maven { url 'https://maven.aliyun.com/repository/jcenter' }
-maven { url 'http://maven.aliyun.com/nexus/content/groups/public' }
+Flutter SDK目录\packages\flutter_tools\gradle\flutter.gradle
 
 ```
 
-第一步：修改掉项目下的android目录下的build.gradle文件，把google() 和 jcenter()这两行注释掉。改为阿里的链接。
+把文件里的google() 和 jcenter()这两行改为阿里的链接.
 
-```
-buildscript {
-    repositories {
-        //  google()
-        //  jcenter()
-        maven { url 'https://maven.aliyun.com/repository/google' }
-        maven { url 'https://maven.aliyun.com/repository/jcenter' }
-        maven { url 'http://maven.aliyun.com/nexus/content/groups/public'}
-        }
-        dependencies {
-        classpath 'com.android.tools.build:gradle:3.1.2'
-    }
-}
-
-allprojects {
-    repositories {
-        // google()
-        // jcenter()
-        maven { url 'https://maven.aliyun.com/repository/google' }
-        maven { url 'https://maven.aliyun.com/repository/jcenter' }
-        maven { url 'http://maven.aliyun.com/nexus/content/groups/public' }
-    }
-}
-
-rootProject.buildDir = '../build'
-subprojects {
-    project.buildDir = "${rootProject.buildDir}/${project.name}"
-}
-subprojects {
-    project.evaluationDependsOn(':app')
-}
-
-task clean(type: Delete) {
-    delete rootProject.buildDir
-}
-
-```
-
-第二步：修改Flutter SDK包下的flutter.gradle文件,这个目录要根据你的SDK存放的位置有所变化
-
-如我的路径就是：
-
-```
-E:\soft\flutter\packages\flutter_tools\gradle
-```
-
-打开flutter.gradle文件进行修改，把google() 和 jcenter()这两行注释掉。改为阿里的链接
-
-```
-buildscript {
-    repositories {
-        //jcenter()
-        // maven {
-        //     url 'https://dl.google.com/dl/android/maven2'
-        // }
-        maven{
-            url 'https://maven.aliyun.com/repository/jcenter'
-        }
-        maven{
-            url 'http://maven.aliyun.com/nexus/content/groups/public'
-        }
-    }
-    dependencies {
-        classpath 'com.android.tools.build:gradle:3.1.2'
-    }
-}
-```
 
 
 附录：
