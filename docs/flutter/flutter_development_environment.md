@@ -1,6 +1,6 @@
 
 
-flutter 开发环境搭建
+# flutter 开发环境搭建
 
 以下安装过程仅是winodws7系统下的安装过程。 windows其它系统的安装和win7下安装大致差不多。 如果是其它的如linux, 苹果的OSX系统。请参考flutter的官方文档来配置。
 
